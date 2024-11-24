@@ -1,892 +1,2960 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="h-full">
 <head>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Griya Sehat Sumbersuci</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="logoku1.png" type="image/png" />
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": "Griya Sehat Sumbersuci",
+          "url": "https://griyasehat.info",
+          "logo": "https://griyasehat.info/path/to/logoku1.png", 
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": " ",
+            "addressLocality": "Ujungpangkah", 
+            "addressRegion": "Gresik",  
+            "addressCountry": "ID",  
+            "postalCode": "61154"  
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -6.9163,  
+            "longitude": 112.4654 
+          },
+          "sameAs": [
+            "https://www.facebook.com/namausaha",  
+            "https://twitter.com/namausaha",       
+            "https://www.instagram.com/namausaha"  
+          ]
+        }
+        </script>        
+               
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+                .quote-container {
+            position: relative;
+            padding-top: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            perspective: 1000px;
+            background: #f0f0f0;
+            
+        }
 
-    * {
+        .steel-board {
+            position: relative;
+            width: 90%;
+            max-width: 600px;
+            min-height: 200px;
+            padding: 30px;
+            transform-style: preserve-3d;
+            animation: gentleSwing 6s ease-in-out infinite;
+        }
+
+        /* Main steel surface with realistic texture */
+        .steel-face {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(
+                    45deg,
+                    #1e301a,
+                    #4a4a4a,
+                    #5a5a5a,
+                    #4a4a4a,
+                    #3a3a3a
+                );
+            border-radius: 8px;
+            box-shadow: 
+                inset 0 0 20px rgba(59, 59, 59, 0.8),
+                0 10px 30px rgba(89, 94, 89, 0.4);
+            overflow: hidden;
+        }
+
+        /* Steel texture effect */
+        .steel-texture {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.4;
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent 0%,
+                    rgba(255,255,255,0.1) 25%,
+                    transparent 50%,
+                    rgba(255,255,255,0.1) 75%,
+                    transparent 100%
+                ),
+                linear-gradient(
+                    180deg,
+                    rgba(255,255,255,0.1) 0%,
+                    transparent 45%,
+                    transparent 55%,
+                    rgba(255,255,255,0.1) 100%
+                );
+            background-size: 50px 50px;
+        }
+
+        /* Steel rivets */
+        .rivet {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: radial-gradient(
+                circle at 35% 35%,
+                #535854 0%,
+                #4a4a4a 50%,
+                #2a2a2a 100%
+            );
+            box-shadow: 
+                inset -2px -2px 4px rgba(0,0,0,0.7),
+                inset 2px 2px 4px rgba(255,255,255,0.3),
+                2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Steel edges */
+        .steel-edge {
+            position: absolute;
+            background: #2a2a2a;
+            box-shadow: 
+                inset 0 0 10px rgba(0,0,0,0.8),
+                0 0 5px rgba(0,0,0,0.5);
+        }
+
+        .edge-top { 
+            top: 0; left: 0; right: 0; height: 8px;
+            transform: translateZ(-8px) rotateX(45deg);
+        }
+        .edge-bottom { 
+            bottom: 0; left: 0; right: 0; height: 8px;
+            transform: translateZ(-8px) rotateX(-45deg);
+        }
+        .edge-left { 
+            left: 0; top: 0; bottom: 0; width: 8px;
+            transform: translateZ(-8px) rotateY(-45deg);
+        }
+        .edge-right { 
+            right: 0; top: 0; bottom: 0; width: 8px;
+            transform: translateZ(-8px) rotateY(45deg);
+        }
+
+        .chain-mount {
+            position: absolute;
+            top: -10px;
+            width: 50px;
+            height: 25px;
+            background: linear-gradient(to bottom, #2a2a2a, #1a1a1a);
+            border-radius: 5px;
+            box-shadow: 
+                inset 0 0 10px rgba(110, 114, 110, 0.8),
+                0 4px 8px rgba(65, 66, 65, 0.4);
+        }
+
+        .chain-mount-left {
+            left: 20%;
+            transform: translateX(-50%);
+        }
+
+        .chain-mount-right {
+            right: 20%;
+            transform: translateX(50%);
+        }
+
+        .chain {
+            position: absolute;
+            top: -115px;
+            width: 5px;
+            height: 170px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: chainSway 4s ease-in-out infinite;
+        }
+
+        .chain-left {
+    left: 20%;
+    transform-origin: top center;
+    animation-delay: -0.5s;
+}
+
+.chain-right {
+    right: 20%;
+    transform-origin: top center;
+    animation-delay: 0.5s;
+}
+
+        .chain-link {
+            width: 20px;
+            height: 30px;
+            margin: -6px 0;
+            background: linear-gradient(
+                135deg,
+                #2f4636 0%,
+                #4a4a4a 45%,
+                #5a5a5a 50%,
+                #4a4a4a 55%,
+                #2a2a2a 100%
+            );
+            border-radius: 40%;
+            box-shadow: 
+                inset 1px 1px 3px rgba(255,255,255,0.2),
+                inset -1px -1px 3px rgba(0,0,0,0.8),
+                2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.3s;
+        }
+
+        .chain-link::before,
+        .chain-link::after {
+            content: '';
+            position: absolute;
+            width: 22px;
+            height: 8px;
+            background: linear-gradient(to bottom, #3a3a3a, #2a2a2a);
+            border-radius: 4px;
+            left: -1px;
+            box-shadow: 
+                inset 0 2px 2px rgba(255,255,255,0.1),
+                inset 0 -2px 2px rgba(0,0,0,0.8);
+        }
+
+        .chain-link::before { top: -2px; }
+        .chain-link::after { bottom: -2px; }
+
+        .ceiling-mount {
+            position: absolute;
+            top: -150px;
+            width: 80px;
+            height: 30px;
+            background: linear-gradient(to bottom, #969691, #000000);
+            border-radius: 0 0 8px 8px;
+            box-shadow: 
+                0 4px 8px rgba(0,0,0,0.5),
+                inset 0 -2px 4px rgba(255,255,255,0.1);
+        }
+
+        .ceiling-mount-left {
+            left: 20%;
+            transform: translateX(-50%);
+        }
+
+        .ceiling-mount-right {
+            right: 20%;
+            transform: translateX(50%);
+        }
+
+        .quote-text {
+            position: relative;
+            z-index: 1;
+            color: #ffffff;
+            font-family: 'Palatino', serif;
+            font-size: clamp(16px, 4vw, 28px);
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        @keyframes gentleSwing {
+            0% { 
+                transform: rotate3d(1, 0, 0, 2deg) rotate3d(0, 1, 0, 1deg); 
+            }
+            50% { 
+                transform: rotate3d(1, 0, 0, -2deg) rotate3d(0, 1, 0, -1deg); 
+            }
+            100% { 
+                transform: rotate3d(1, 0, 0, 2deg) rotate3d(0, 1, 0, 1deg); 
+            }
+        }
+
+        @keyframes chainSway {
+    0% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+    100% { transform: rotate(-2deg); }
+}
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .steel-board {
+                padding: 20px;
+                min-height: 180px;
+            }
+
+            .chain {
+                height: 100px;
+                top: -100px;
+            }
+
+            .ceiling-mount {
+                top: -100px;
+                width: 60px;
+                height: 25px;
+            }
+
+            .rivet {
+                width: 12px;
+                height: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .steel-board {
+                padding: 15px;
+                width: 95%;
+                min-height: 160px;
+            }
+
+            .chain {
+                height: 80px;
+                top: -80px;
+            }
+
+            .ceiling-mount {
+                top: -105px;
+                width: 50px;
+                height: 20px;
+            }
+
+            .chain-mount {
+                width: 40px;
+                height: 20px;
+            }
+
+            .rivet {
+                width: 10px;
+                height: 10px;
+            }
+        }
+                .whatsapp-container {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            z-index: 100;
+        }
+
+        .whatsapp-float {
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            animation: pulse 2s infinite;
+        }
+
+        /* Pulse animation */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 12px rgba(37, 211, 102, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            }
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background-color: #22c15e;
+            box-shadow: 0 6px 16px rgba(37, 211, 102, 0.6);
+        }
+
+        .tooltip {
+            position: absolute;
+            right: 75px;
+            background-color: #fff;
+            color: #333;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            width: max-content;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+        }
+
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-width: 8px;
+            border-style: solid;
+            border-color: transparent transparent transparent #fff;
+        }
+
+        .whatsapp-float:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+            right: 85px;
+        }
+
+        .whatsapp-label {
+            background-color: #25D366;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 24px;
+            font-size: 14px;
+            position: absolute;
+            right: 75px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
+        }
+
+        .whatsapp-container:hover .whatsapp-label {
+            opacity: 1;
+            visibility: visible;
+            right: 85px;
+        }
+
+        /* Mobile Responsive */
+        @media screen and (max-width: 768px) {
+            .whatsapp-container {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
+            }
+
+            .tooltip, .whatsapp-label {
+                display: none;
+            }
+        }
+
+        /* Optional: Add status dot */
+        .status-dot {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 12px;
+            height: 12px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            border: 2px solid white;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Demo content styles - you can remove this */
+        .demo-content {
+            height: 150vh;
+            padding: 20px;
+            background: linear-gradient(45deg, #f3f4f6, #e5e7eb);
+        }
+        .containerx {
+            position: center;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            background-color: var(--light-gray);
+        }
+        .content {
+            flex: 1 0 auto;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        footer {
+            flex-shrink: 0;
+            margin-top: auto;
+        }
+        .social-icon {
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .social-icon:hover {
+            transform: scale(1.2) rotate(360deg);
+        }
+        .social-icon.instagram:hover {
+            color: #E1306C;
+        }
+        .social-icon.youtube:hover {
+            color: #FF0000;
+        }
+        .social-icon.whatsapp:hover {
+            color: #25D366;
+        }
+        .social-icon.facebook:hover {
+            color: #1877F2;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.75rem 2rem;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+}
+
+.nav-logo {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+        .brand-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #57A738;
+        }
+
+        .brand-text span {
+            color: #304D33;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link svg {
+            width: 20px;
+            height: 20px;
+            stroke: #57A738;
+            stroke-width: 2;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #57A738;
+        }
+
+        .nav-link:hover svg {
+            transform: translateY(-2px);
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #57A738;
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .icon-btn {
+            position: relative;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .icon-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .icon-btn svg {
+            width: 24px;
+            height: 24px;
+            stroke: #57A738;
+            stroke-width: 2;
+            transition: all 0.3s ease;
+        }
+
+        .icon-btn:hover svg {
+            stroke: #304D33;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #e74c3c;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: bold;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 120%;
+            right: 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+            padding: 0.75rem;
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .icon-btn.active .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .dropdown-item svg {
+            width: 18px;
+            height: 18px;
+            stroke: #57A738;
+        }
+
+        .dropdown-item:hover {
+            background: #f8f9fa;
+            color: #57A738;
+            transform: translateX(5px);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-toggle span {
+            width: 28px;
+            height: 2px;
+            background: #57A738;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0); }
+            70% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: flex;
+                z-index: 100;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 80%;
+                max-width: 400px;
+                flex-direction: column;
+                gap: 1rem;
+                background: white;
+                padding: 5rem 2rem;
+                transition: right 0.4s ease;
+                box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-link {
+                width: 100%;
+                justify-content: flex-start;
+                padding: 1rem;
+            }
+
+            .nav-icons {
+                width: 100%;
+                justify-content: center;
+                margin-top: 1rem;
+            }
+
+            .nav-toggle.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .nav-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .nav-toggle.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .dropdown {
+                position: fixed;
+                width: calc(80% - 4rem);
+                max-width: 360px;
+            }
+        }
+
+      .hero-wrapper {
+        padding-top: 70px;
+        position: relative;
+        height: 100vh;
+        width: 100%;
+        overflow: hidden;
+        background-color: #000;
+      }
+
+      .hero-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(1.1);
+        transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .hero-slide.active {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+      }
+
+      .hero-slide::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 1;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+      }
+
+      .hero-slide.active .hero-content {
+        animation: contentFadeIn 1s ease forwards;
+      }
+
+      .hero-title {
+        font-size: 4rem;
+        margin-bottom: 1.5rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      .hero-slide.active .hero-title {
+        animation: titleSlideUp 0.8s ease 0.5s forwards;
+      }
+
+      .hero-text {
+        font-size: 1.3rem;
+        margin-bottom: 2.5rem;
+        line-height: 1.7;
+        opacity: 0;
+      }
+
+      .hero-slide.active .hero-text {
+        animation: textFadeIn 0.8s ease 0.7s forwards;
+      }
+
+      .hero-btn {
+        display: inline-block;
+        padding: 18px 35px;
+        background: transparent;
+        color: white;
+        text-decoration: none;
+        border: 2px solid white;
+        border-radius: 30px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.4s ease;
+        opacity: 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: white;
+        transform: translateX(-100%);
+        transition: transform 0.4s ease;
+        z-index: -1;
+      }
+
+      .hero-btn:hover {
+        color: #000;
+      }
+
+      .hero-btn:hover::before {
+        transform: translateX(0);
+      }
+
+      .hero-slide.active .hero-btn {
+        animation: buttonFadeIn 0.8s ease 0.9s forwards;
+      }
+
+      .hero-nav {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 12px;
+        z-index: 3;
+      }
+
+      .hero-dot {
+        width: 40px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.3);
+        cursor: pointer;
+        transition: all 0.4s ease;
+      }
+
+      .hero-dot.active {
+        background: rgba(255, 255, 255, 0.8);
+      }
+
+      .hero-dot.active::after {
+        content: "";
+        display: block;
+        height: 100%;
+        width: 100%;
+        background: white;
+        animation: progressBar 5s linear;
+      }
+
+      @keyframes contentFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes titleSlideUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes textFadeIn {
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes buttonFadeIn {
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes progressBar {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.8rem;
+        }
+
+        .hero-text {
+          font-size: 1.1rem;
+          margin-bottom: 2rem;
+        }
+
+        .hero-btn {
+          padding: 15px 30px;
+          font-size: 1rem;
+        }
+
+        .hero-dot {
+          width: 30px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-title {
+          font-size: 2.2rem;
+          letter-spacing: 1px;
+        }
+
+        .hero-text {
+          font-size: 1rem;
+          line-height: 1.5;
+        }
+
+        .hero-btn {
+          padding: 12px 25px;
+          font-size: 0.9rem;
+        }
+      }
+
+
+        .headerx {
+            text-align: center;
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .headerx h1 {
+            color: #000000;
+            font-size: 24px;
+            font-weight: 700;
+            font-style:initial;
+        }
+
+        .map-container {
+            position: relative;
+            height: 400px;
+            background: #f1f1f1;
+        }
+
+        .map-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .expand-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            border: none;
+            padding: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .expand-btn:hover {
+            transform: scale(1.1);
+        }
+
+
+        @media (min-width: 768px) {
+            .content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .info-card {
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transform: translateX(-20px);
+            opacity: 0;
+            animation: slideIn 0.6s ease-out forwards;
+            animation-delay: 0.3s;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .info-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .info-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+            color: #22c15e;
+        }
+
+        .info-text {
+            color: #444;
+        }
+
+        .directions-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 24px;
+            background: rgba(87, 167, 56, 0.95);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-top: 20px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .directions-btn:hover {
+            background: #05640a;
+            transform: translateY(-2px);
+        }
+
+        .expanded {
+            grid-column: span 2;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Arial', sans-serif;
+    }
+        @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
     }
 
-    .facilities-section {
-      padding: 4rem 2rem;
-      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-      min-height: 100vh;
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
+    body {
+      background-color: #f4f4f4;
+      transition: background-color 0.3s ease;
+    }
+
+    .team-section {
+      max-width: 1400px;
+      margin: 3rem auto;
       padding: 0 1rem;
+      animation: fadeIn 0.8s ease-out;
     }
 
-    .section-header {
+    .team-title {
       text-align: center;
       margin-bottom: 3rem;
-      position: relative;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
+      color: #333;
+      font-size: 2.5rem;
+      animation: slideUp 0.8s ease-out;
     }
 
-    .section-subtitle {
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .team-member {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+      border-radius: 15px;
+      background: white;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-member::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(41, 128, 185, 0.1));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 1;
+    }
+
+    .team-member:hover::before {
+      opacity: 1;
+    }
+
+    .team-member:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    .member-image {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 6px solid rgba(87, 167, 56, 0.95);
+      margin-bottom: 1.5rem;
+      transition: transform 0.4s ease;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .team-member:hover .member-image {
+      transform: scale(1.05);
+    }
+
+    .member-info {
+      text-align: center;
+      position: relative;
+    }
+
+    .member-name {
+      font-size: 1.8rem;
+      color: #2c3e50;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .verified-badge {
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+      color: white;
+      border-radius: 50%;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      background: rgba(59, 130, 246, 0.1);
-      color: #2563eb;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      font-size: 0.875rem;
-      font-weight: 500;
-      margin-bottom: 1rem;
+      justify-content: center;
+      margin-left: 10px;
+      animation: pulse 2s infinite;
     }
 
-    .section-title {
-      font-size: clamp(1.875rem, 4vw, 2.5rem);
-      color: #0f172a;
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .verified-badge::before {
+      content: '✓';
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .member-position {
+      font-size: 1.2rem;
+      color: #22c15e;
+      margin-bottom: 1rem;
+      opacity: 0.8;
+    }
+
+    .member-description {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    .member-more {
+      color: #22c15e;
+      cursor: pointer;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .member-more:hover {
+      color: #22c15e;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 15px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      animation: slideUp 0.5s ease;
+      position: relative;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #666;
+      transition: color 0.3s ease;
+    }
+
+    .close-modal:hover {
+      color: #3498db;
+    }
+
+    @media (max-width: 768px) {
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .member-image {
+        width: 220px;
+        height: 220px;
+      }
+
+      .team-title {
+        font-size: 2rem;
+      }
+    }
+    .team-container-ant * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .team-container-ant {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      padding: 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+      background: #fafafa;
+    }
+
+    /* Header Styles */
+    .team-header-ant {
+      text-align: center;
+      padding: 3rem 1rem 4rem;
+      position: relative;
+    }
+
+    .team-header-title-ant {
+      font-size: 2.5rem;
+      color: #262626;
+      margin-bottom: 1rem;
       font-weight: 700;
-      margin-bottom: 1rem;
-      line-height: 1.2;
+      background: linear-gradient(135deg, #148f1e, #03ff75);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
     }
 
-    .section-description {
-      color: #475569;
-      font-size: clamp(1rem, 2vw, 1.125rem);
+    .team-header-subtitle-ant {
+      font-size: 1.1rem;
+      color: #666;
       max-width: 600px;
       margin: 0 auto;
       line-height: 1.6;
     }
 
-    .facilities-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-      gap: 2rem;
-      margin: 2rem auto;
-      max-width: 1280px;
+    .team-header-decoration-ant {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(25, 148, 97, 0.1), rgba(19, 199, 88, 0.1));
+      z-index: 0;
     }
 
-    .facility-card {
-      background: white;
-      border-radius: 16px;
-      padding: 2rem;
+    .team-header-decoration-ant.left {
+      top: -40px;
+      left: 5%;
+    }
+
+    .team-header-decoration-ant.right {
+      bottom: -40px;
+      right: 5%;
+    }
+
+    .team-grid-ant {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      padding: 20px;
+      margin: 0 auto;
       position: relative;
+      z-index: 1;
+    }
+
+    .team-member-ant {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
       transition: all 0.3s ease;
-      border: 1px solid rgba(0, 0, 0, 0.05);
-      height: 100%;
       display: flex;
       flex-direction: column;
+      align-items: center;
     }
 
-    .facility-card:hover {
+    .team-member-ant:hover {
       transform: translateY(-5px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     }
 
-    .facility-badge {
-      position: absolute;
-      top: 1.25rem;
-      right: 1.25rem;
-      background: rgba(59, 130, 246, 0.1);
-      color: #2563eb;
-      padding: 0.375rem 0.75rem;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 600;
+    .member-image-ant {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 2px #3498db;
+      margin: 0 auto 1.5rem;
+      display: block;
     }
 
-    .facility-icon {
-      width: 48px;
-      height: 48px;
-      background: rgba(59, 130, 246, 0.1);
-      border-radius: 12px;
+    .member-name-ant {
+      font-size: 1.5rem;
+      color: #262626;
+      margin-bottom: 0.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1.25rem;
-      color: #2563eb;
-    }
-
-    .facility-title {
-      font-size: 1.25rem;
+      gap: 8px;
       font-weight: 600;
-      color: #1e293b;
-      margin-bottom: 0.75rem;
     }
 
-    .facility-description {
-      color: #64748b;
-      line-height: 1.6;
-      font-size: 0.938rem;
-      flex-grow: 1;
-    }
-
-    .stats-bar {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      margin: 3rem auto;
-      padding: 2rem;
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-      max-width: 1000px;
-    }
-
-    .stat-item {
-      text-align: center;
-      padding: 1rem;
-    }
-
-    .stat-number {
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      font-weight: 700;
-      color: #2563eb;
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-label {
-      color: #64748b;
-      font-size: clamp(0.875rem, 1.5vw, 1rem);
-    }
-    .cta-button {
+    .verified-badge-ant {
+      width: 18px;
+      height: 18px;
+      position: relative;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      background: #2563eb;
+      justify-content: center;
+    }
+
+    .verified-badge-ant::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #0095f6;
+      border-radius: 50%;
+    }
+
+    .verified-badge-ant::after {
+      content: '✓';
       color: white;
-      padding: 1rem 2rem;
-      border-radius: 12px;
-      font-weight: 600;
-      margin-top: 3rem;
+      font-size: 12px;
+      font-weight: bold;
+      position: relative;
+      z-index: 1;
+    }
+
+    .member-position-ant {
+      color: #8e8e8e;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .member-description-ant {
+      color: #262626;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .read-more-btn-ant {
+      display: inline-block;
+      padding: 8px 24px;
+      background: rgba(87, 167, 56, 0.95);
+      color: white;
+      border-radius: 8px;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: background 0.3s ease;
       border: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: auto;
+    }
+
+    .read-more-btn-ant:hover {
+      background: rgba(87, 167, 56, 0.95);
+    }
+
+    /* Custom Modal Styles */
+    .team-modal-ant {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: 99999;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-content-ant {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .modal-close-ant {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      background: #f1f1f1;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 20px;
+      border: none;
+      color: #262626;
+      transition: background 0.3s ease;
+    }
+
+    .modal-close-ant:hover {
+      background: #e4e4e4;
+    }
+
+    .modal-header-ant {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .modal-body-ant {
+      line-height: 1.8;
+      color: #262626;
       font-size: 1rem;
     }
 
-    .cta-button:hover {
-      background: #1d4ed8;
-      transform: translateY(-2px);
-    }
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+      .team-grid-ant {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
 
-    .cta-container {
-      text-align: center;
-      margin-top: 4rem;
+      .team-header-decoration-ant {
+        width: 140px;
+        height: 140px;
+      }
     }
 
     @media (max-width: 768px) {
-      .facilities-section {
-        padding: 4rem 1rem;
+      .team-grid-ant {
+        grid-template-columns: 1fr;
+        padding: 10px;
+      }
+      
+      .member-image-ant {
+        width: 160px;
+        height: 160px;
       }
 
-      .section-title {
+      .team-member-ant {
+        padding: 1.5rem;
+      }
+
+      .member-name-ant {
+        font-size: 1.3rem;
+      }
+
+      .modal-content-ant {
+        padding: 1.5rem;
+        width: 95%;
+      }
+
+      .team-header-title-ant {
         font-size: 2rem;
       }
 
-      .stats-bar {
-        flex-direction: column;
-        gap: 2rem;
-        padding: 1.5rem;
-      }
-
-      .stat-item {
-        padding: 1rem 0;
-        border-bottom: 1px solid #e2e8f0;
-      }
-
-      .stat-item:last-child {
-        border-bottom: none;
-      }
-    }
-
-    /* Animation classes */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.6s ease;
-    }
-
-    .fade-up.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: #f1f5f9;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: #94a3b8;
-      border-radius: 4px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: #64748b;
-    }
-/* Updated Modal Base Styles */
-.modal {
-    -webkit-overflow-scrolling: touch;
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  padding: 1rem;
-  overflow-y: auto;
-}
-
-.modal-content {
-    margin: auto;
-      max-height: 100vh;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-  background: white;
-  padding: clamp(1.5rem, 4vw, 3rem);
-  border-radius: 24px;
-  width: min(95%, 600px);
-  max-width: 600px;
-  position: relative;
-  margin: 2rem auto;
-  animation: modalFadeIn 0.3s ease-out;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-              0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-/* Improved Form Layout */
-.form-group {
-  margin-bottom: 2rem;
-  position: relative;
-}
-
-.form-label {
-  display: block;
-  margin-bottom: 0.75rem;
-  color: #1e293b;
-  font-weight: 600;
-  font-size: 0.95rem;
-  letter-spacing: -0.01em;
-}
-
-.form-input {
-  width: 100%;
-  padding: 1rem 1.25rem;
-  border: 2px solid #e2e8f0;
-  border-radius: 12px;
-  font-size: 1rem;
-  transition: all 0.2s ease;
-  background: #f8fafc;
-  color: #0f172a;
-}
-
-.form-input:hover {
-  border-color: #cbd5e1;
-  background: white;
-}
-
-.form-input:focus {
-  outline: none;
-  border-color: #2563eb;
-  background: white;
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
-}
-
-/* Enhanced Select Dropdown */
-select.form-input {
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23475569'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 1rem center;
-  background-size: 1.5em;
-  padding-right: 2.5rem;
-}
-
-/* Improved Textarea */
-textarea.form-input {
-  min-height: 120px;
-  resize: vertical;
-  line-height: 1.5;
-}
-
-/* Enhanced Button Styling */
-.submit-button {
-  width: 100%;
-  padding: 1.25rem;
-  background: #2563eb;
-  color: white;
-  border: none;
-  border-radius: 14px;
-  font-weight: 600;
-  font-size: 1.05rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-top: 2.5rem;
-  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.1),
-              0 2px 4px -1px rgba(37, 99, 235, 0.06);
-}
-
-.submit-button:hover {
-  background: #1d4ed8;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 8px -1px rgba(37, 99, 235, 0.1),
-              0 4px 6px -1px rgba(37, 99, 235, 0.06);
-}
-
-/* Improved Modal Header */
-.modal-title {
-  font-size: 1.75rem;
-  color: #0f172a;
-  font-weight: 700;
-  margin-bottom: 0.75rem;
-  letter-spacing: -0.02em;
-}
-
-.modal-subtitle {
-  color: #64748b;
-  font-size: 1rem;
-  margin-bottom: 2.5rem;
-  line-height: 1.5;
-}
-
-/* Enhanced Close Button */
-.close-modal {
-  position: absolute;
-  top: 1.75rem;
-  right: 1.75rem;
-  cursor: pointer;
-  background: #f1f5f9;
-  border: none;
-  color: #64748b;
-  padding: 0.5rem;
-  border-radius: 50%;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.close-modal:hover {
-  background: #e2e8f0;
-  color: #1e293b;
-  transform: rotate(90deg);
-}
- /* Updated Modal Styles for Better Mobile Experience */
-    @media (max-width: 768px) {
-      .modal {
-        padding: 0;
-      }
-
-      .modal-content {
-        width: 100%;
-        height: 100%;
-        max-height: 100vh;
-        margin: 0;
-        border-radius: 0;
-        padding: 1.5rem;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .modal-title {
-        font-size: 1.5rem;
-        padding-right: 2.5rem;
-      }
-
-      .modal-subtitle {
-        font-size: 0.875rem;
-        margin-bottom: 1.5rem;
-      }
-
-      .form-group {
-        margin-bottom: 1.25rem;
-      }
-
-      .form-input {
-        padding: 0.875rem;
+      .team-header-subtitle-ant {
         font-size: 1rem;
+        padding: 0 1rem;
       }
 
-      .form-label {
-        font-size: 0.875rem;
-        margin-bottom: 0.5rem;
-      }
-
-      /* Make the form scrollable on mobile */
-      form {
-        flex: 1;
-        overflow-y: auto;
-        padding-bottom: 1rem;
-      }
-
-      /* Fix submit button positioning */
-      .submit-button {
-        position: sticky;
-        bottom: 0;
-        margin-top: 1rem;
-        padding: 1rem;
-        font-size: 1rem;
-      }
-
-      /* Improve close button accessibility */
-      .close-modal {
-        top: 1rem;
-        right: 1rem;
-        padding: 0.75rem;
-        background: rgba(241, 245, 249, 0.9);
-        backdrop-filter: blur(4px);
+      .team-header-decoration-ant {
+        width: 100px;
+        height: 100px;
       }
     }
-/* Improved Mobile Responsiveness */
-@media (max-width: 768px) {
-  .modal {
-    align-items: flex-end;
-    padding: 0;
-  }
 
-  .modal-content {
-    margin: 0;
-    border-radius: 24px 24px 0 0;
-    max-height: 90vh;
-    overflow-y: auto;
-    padding: 2.5rem 1.5rem;
-  }
-
-  .modal-title {
-    font-size: 1.5rem;
-    padding-right: 2rem;
-  }
-
-  .form-group {
-    margin-bottom: 1.5rem;
-  }
-
-  .form-input {
-    padding: 0.875rem 1rem;
-    font-size: 1rem;
-  }
-
-  .submit-button {
-    padding: 1rem;
-    margin-top: 2rem;
-  }
-
-  .close-modal {
-    top: 1.25rem;
-    right: 1.25rem;
-  }
-}
-
-/* Small Screen Optimizations */
-@media (max-width: 480px) {
-  .modal-content {
-    padding: 2rem 1.25rem;
-  }
-
-  .modal-title {
-    font-size: 1.25rem;
-  }
-
-  .modal-subtitle {
-    font-size: 0.875rem;
-    margin-bottom: 2rem;
-  }
-
-  .form-label {
-    font-size: 0.875rem;
-  }
-
-  .form-input {
-    font-size: 0.95rem;
-  }
-
-  .submit-button {
-    font-size: 1rem;
-    padding: 0.875rem;
-  }
-}
-
-/* Added smooth scrolling for modal content */
-.modal-content {
-  scroll-behavior: smooth;
-}
-
-/* Improved scrollbar styling */
-.modal-content::-webkit-scrollbar {
-  width: 6px;
-}
-
-.modal-content::-webkit-scrollbar-track {
-  background: #f8fafc;
-  border-radius: 3px;
-}
-
-.modal-content::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 3px;
-}
-
-.modal-content::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
-}
-
-    .whatsapp-icon {
-      width: 24px;
-      height: 24px;
-    }
-
- /* Updated Mobile Responsive Styles */
- @media (max-width: 768px) {
-      .facilities-section {
-        padding: 2rem 1rem;
-      }
-
-      .section-header {
-        margin-bottom: 2rem;
-      }
-
-      .section-title {
-        font-size: 1.75rem;
-        line-height: 1.3;
-      }
-
-      .section-description {
-        font-size: 0.875rem;
-        line-height: 1.5;
-      }
-
-      .facilities-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        margin: 1.5rem auto;
-      }
-
-      .facility-card {
-        padding: 1.5rem;
-      }
-
-      .facility-title {
-        font-size: 1.125rem;
-      }
-
-      .facility-description {
-        font-size: 0.875rem;
-      }
-
-      .stats-bar {
-        grid-template-columns: 1fr;
-        margin: 2rem auto;
-        padding: 1.5rem;
-      }
-
-      .stat-item {
-        padding: 1rem 0;
-        border-bottom: 1px solid #e2e8f0;
-      }
-
-      .stat-item:last-child {
-        border-bottom: none;
-      }
-
-      .cta-button {
-        width: 100%;
-        padding: 0.875rem 1.5rem;
-        font-size: 0.875rem;
+    /* For larger desktop screens */
+    @media (min-width: 1400px) {
+      .team-grid-ant {
+        grid-template-columns: repeat(4, 1fr);
       }
     }
-  </style>
+
+        .therapy-section {
+            padding: 40px 20px 80px;
+            background: #ffffff;
+        }
+
+        .therapy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .therapy-card {
+            background: #ffffff;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            cursor: pointer;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .therapy-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+        }
+
+        .therapy-image {
+            width: 100%;
+            height: 280px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .therapy-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .therapy-card:hover .therapy-image img {
+            transform: scale(1.1);
+        }
+
+        .therapy-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            font-size: 1.5em;
+            font-weight: 600;
+            transform: translateY(0);
+            transition: transform 0.4s ease;
+        }
+
+        .therapy-card:hover .therapy-title {
+            transform: translateY(-5px);
+        }
+
+        .therapy-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .therapy-content-inner {
+            padding: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+        }
+
+        .therapy-card.active .therapy-content {
+            max-height: 1000px;
+        }
+
+        .therapy-card.active .therapy-content-inner {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .therapy-description {
+            color: #666666;
+            line-height: 1.8;
+            margin-bottom: 24px;
+            font-size: 1.05em;
+        }
+
+        .benefits {
+            list-style: none;
+            margin: 24px 0;
+        }
+
+        .benefits li {
+            color: #4a4a4a;
+            margin: 12px 0;
+            padding-left: 28px;
+            position: relative;
+            font-size: 1em;
+        }
+
+        .benefits li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: #2E8B57;
+            font-size: 1.1em;
+        }
+
+        .treatment-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .treatment-time {
+            color: #666666;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95em;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .subtitles {
+                font-size: 1.1em;
+            }
+
+            .therapy-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .therapy-image {
+                height: 240px;
+            }
+
+            .therapy-title {
+                font-size: 1.3em;
+                padding: 24px;
+            }
+
+            .therapy-content-inner {
+                padding: 24px;
+            }
+        }
+
+    </style>
 </head>
-<body>
-  <section class="facilities-section">
-    <div class="container">
-      <div class="section-header fade-up">
-        <div class="section-subtitle">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20.2 7.8l-7.7 7.7-4-4-5.7 5.7"/>
-            <path d="M15 7h6v6"/>
-          </svg>
-          Premium Wellness Center
-        </div>
-        <h2 class="section-title">Fasilitas Berkelas Internasional</h2>
-        <p class="section-description">
-          Rasakan pengalaman terapi premium dengan fasilitas modern dan pelayanan terbaik dari para ahli tersertifikasi
-        </p>
-      </div>
-
-      <div class="facilities-grid">
-        <!-- Card 1 -->
-        <div class="facility-card fade-up">
-          <span class="facility-badge">Medical Grade</span>
-          <div class="facility-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
-          </div>
-          <h3 class="facility-title">Sterilisasi Tingkat Tinggi</h3>
-          <p class="facility-description">
-            Standar sterilisasi medical-grade dengan teknologi terkini untuk menjamin keamanan setiap peralatan terapi
-          </p>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="facility-card fade-up">
-          <span class="facility-badge">5-Star Quality</span>
-          <div class="facility-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-            </svg>
-          </div>
-          <h3 class="facility-title">Fasilitas Premium</h3>
-          <p class="facility-description">
-            Ruangan dan toilet berstandar hotel bintang 5 dengan amenities premium untuk kenyamanan maksimal
-          </p>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="facility-card fade-up">
-          <span class="facility-badge">Expert Care</span>
-          <div class="facility-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-            </svg>
-          </div>
-          <h3 class="facility-title">Terapis Profesional</h3>
-          <p class="facility-description">
-            Tim terapis berpengalaman dengan sertifikasi internasional dan minimal 5 tahun pengalaman
-          </p>
-        </div>
-
-        <!-- Card 4 -->
-        <div class="facility-card fade-up">
-          <span class="facility-badge">Latest Tech</span>
-          <div class="facility-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-            </svg>
-          </div>
-          <h3 class="facility-title">Peralatan Modern</h3>
-          <p class="facility-description">
-            Menggunakan peralatan terapi terkini dengan sertifikasi internasional untuk hasil optimal
-          </p>
-        </div>
-      </div>
-
-      <div class="stats-bar fade-up">
-        <div class="stat-item">
-          <div class="stat-number" data-target="10">0</div>
-          <div class="stat-label">Tahun Pengalaman</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number" data-target="10000">0</div>
-          <div class="stat-label">Klien Puas</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number" data-target="98">0</div>
-          <div class="stat-label">Tingkat Kepuasan</div>
-        </div>
-      </div>
-
-      <div class="cta-container fade-up">
-        <button class="cta-button" onclick="openModal()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-          Jadwalkan Terapi Sekarang
-        </button>
-      </div>
+<body class="min-h-screen">
+    <div class="content flex-grow">
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="#" class="nav-brand">
+                    <div class="nav-logo">
+                        <img src="logoku1.png" alt="GriyaSehat Logo">
+                    </div>
+                    <div class="brand-text">GRIYA<span>SEHAT</span></div>
+                </a>
+                
+                <div class="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
     
-      <!-- WhatsApp Form Modal -->
-      <div class="modal" id="bookingModal">
-        <div class="modal-content">
-          <button class="close-modal" onclick="closeModal()">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M18 6L6 18M6 6l12 12"/>
-            </svg>
-          </button>
-          
-          <h3 class="modal-title">Jadwalkan Terapi Anda</h3>
-          <p class="modal-subtitle">Isi form di bawah untuk membuat janji terapi</p>
-    
-          <form id="bookingForm" onsubmit="submitForm(event)">
-            <div class="form-group">
-              <label class="form-label" for="name">Nama Lengkap</label>
-              <input type="text" id="name" class="form-input" required placeholder="Masukkan nama lengkap Anda">
-            </div>
-    
-            <div class="form-group">
-              <label class="form-label" for="service">Jenis Terapi</label>
-              <select id="service" class="form-input" required>
-                <option value="">Pilih jenis terapi</option>
-                <option value="Fisioterapi">Fisioterapi</option>
-                <option value="Terapi Okupasi">Terapi Okupasi</option>
-                <option value="Terapi Wicara">Terapi Wicara</option>
-                <option value="Hidroterapi">Hidroterapi</option>
-              </select>
-            </div>
-    
-            <div class="form-group">
-              <label class="form-label" for="date">Tanggal Terapi</label>
-              <input type="date" id="date" class="form-input" required min="">
-            </div>
-    
-            <div class="form-group">
-              <label class="form-label" for="time">Waktu Terapi</label>
-              <select id="time" class="form-input" required>
-                <option value="">Pilih waktu terapi</option>
-                <option value="09:00">09:00 WIB</option>
-                <option value="10:00">10:00 WIB</option>
-                <option value="11:00">11:00 WIB</option>
-                <option value="13:00">13:00 WIB</option>
-                <option value="14:00">14:00 WIB</option>
-                <option value="15:00">15:00 WIB</option>
-              </select>
-            </div>
-    
-            <div class="form-group">
-              <label class="form-label" for="notes">Catatan Tambahan (Opsional)</label>
-              <textarea id="notes" class="form-input" rows="3" placeholder="Masukkan catatan atau keluhan Anda"></textarea>
-            </div>
-    
-            <button type="submit" class="submit-button">
-              <svg class="whatsapp-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0C5.373 0 0 5.373 0 12c0 6.627 5.373 12 12 12s12-5.373 12-12c0-6.627-5.373-12-12-12zm.031 18c-1.828 0-3.516-.527-4.922-1.426l-3.438 1.109 1.141-3.391A8.896 8.896 0 0 1 3.77 12c0-4.969 4.062-9 9.062-9s9.062 4.031 9.062 9-4.062 9-9.062 9zm4.047-6.297c-.188-.094-1.109-.547-1.281-.609s-.297-.094-.422.094c-.125.187-.484.609-.594.734-.109.125-.219.141-.406.047s-.797-.293-1.516-.934c-.562-.5-.941-1.117-1.051-1.305s-.012-.289.084-.383c.086-.086.188-.227.281-.34s.125-.195.188-.324.031-.242-.016-.34-.422-1.016-.578-1.391c-.156-.375-.316-.32-.422-.326-.109-.008-.234-.008-.359-.008s-.328.047-.5.234-.656.641-.656 1.563.672 1.813.766 1.938 1.313 2.008 3.184 2.816c.445.195.793.311 1.062.398.447.143.855.123 1.176.074.359-.055 1.105-.453 1.258-.891s.156-.812.109-.891c-.045-.078-.168-.125-.357-.219z"/>
-              </svg>
-              Hubungi via WhatsApp
-            </button>
-          </form>
-        </div>
-      </div>
-
-  <script>
-    // Scroll animation
-    const fadeElements = document.querySelectorAll('.fade-up');
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
-    }, {
-      threshold: 0.1
-    });
-
-    fadeElements.forEach(element => {
-      observer.observe(element);
-    });
-
-    // Number counter animation
-    const stats = document.querySelectorAll('.stat-number');
-    
-    stats.forEach(stat => {
-      const target = parseInt(stat.getAttribute('data-target'));
-      const duration = 2000; // 2 seconds
-      const step = target / (duration / 16); // 60fps
-      let current = 0;
+                <ul class="nav-links">
+                    <li>
+                        <a href="#home" class="nav-link">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M9 22V12h6v10" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="info.html" class="nav-link">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M22 4L12 14.01l-3-3" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Fasilitas & Booking
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#consulting" class="nav-link">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="9" cy="7" r="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Terapis
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contact" class="nav-link">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M22 6l-10 7L2 6" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Hubungi kami
+                        </a>
+                    </li>
+                    <li class="nav-icons">
+                        <button class="icon-btn" id="cart-btn">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M9 20a1 1 0 100 2 1 1 0 000-2zm7 0a1 1 0 100 2 1 1 0 000-2zm-7-3h7a1 1 0 00.962-.725l3-10A1 1 0 0019 5H5.82L5.1 2.725A1 1 0 004.1 2H2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span class="cart-count">3</span>
+                            <div class="dropdown">
+                                <a href="#" class="dropdown-item">
+                                    <svg viewBox="0 0 24 24" fill="none">
+                                        <circle cx="9" cy="21" r="1"/>
+                                        <circle cx="20" cy="21" r="1"/>
+                                        <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
+                                    </svg>
+                                    Cart Items (3)
+                                </a>
+                                <a href="#" class="dropdown-item">
+                                    <svg viewBox="0 0 24 24" fill="none">
+                                        <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                                        <path d="M22 4L12 14.01l-3-3"/>
+                                    </svg>
+                                    Checkout
+                                </a>
+                                <a href="#" class="dropdown-item">
+                                    <svg viewBox="0 0 24 24" fill="none">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <path d="M12 6v6l4 2"/>
+                                    </svg>
+                                    Order History
+                                </a>
+                            </div>
+                        </button>
+                        <button class="icon-btn" id="profile-btn">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            <div class="dropdown">
+                                <a href="#" class="dropdown-item">
+                                    <svg viewBox="0 0 24 24" fill="none">
+                                        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                                        <circle cx="12" cy="7" r="4"/>
+                                    </svg>
+                                    My Profile
+                                </a>
+                                <div class="dropdown">
+                                    <a href="#" class="dropdown-item">
+                                        <svg viewBox="0 0 24 24" fill="none">
+                                            <circle cx="12" cy="12" r="3"/>
+                                            <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/>
+                                        </svg>
+                                        Settings
+                                    </a>
+                                    <a href="#" class="dropdown-item">
+                                        <svg viewBox="0 0 24 24" fill="none">
+                                            <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
+                                            <polyline points="16 17 21 12 16 7"/>
+                                            <line x1="21" y1="12" x2="9" y2="12"/>
+                                        </svg>
+                                        Sign Out
+                                    </a>
+                                </div>
+                            </nav>
       
-      const updateNumber = () => {
-        current += step;
-        if (current < target) {
-          stat.textContent = Math.round(current).toLocaleString();
-          requestAnimationFrame(updateNumber);
-        } else {
-          stat.textContent = target.toLocaleString();
-        }
-      };
-      
-      const startCounting = (entries) => {
-        if (entries[0].isIntersecting) {
-          updateNumber();
-          statsObserver.unobserve(stat);
-        }
-      };
-      
-      const statsObserver = new IntersectionObserver(startCounting, {
-        threshold: 0.5
-      });
-      
-      statsObserver.observe(stat);
-    });
-
-    // Smooth hover effect for facility cards
-    const cards = document.querySelectorAll('.facility-card');
-    
-    cards.forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+          <div class="hero-wrapper">
+            <div
+              class="hero-slide active"
+              style="background: url('bekamz.png') center/cover no-repeat"
+            >
+              <div class="hero-content">
+                <h1 class="hero-title">terapi bekam</h1>
+                                  <p class="hero-text">
+                    pengobatan yang dianjurkan oleh Nabi Muhammad ﷺ, dan dikenal sebagai salah satu bentuk thibbun nabawi (pengobatan ala Nabi).
+                </p>
+                <a href="info.html" class="hero-btn">klik untuk info & booking!</a>
+              </div>
+            </div>
+            <div
+              class="hero-slide"
+              style="background: url('akupuntur1.jpg') center/cover no-repeat"
+            >
+              <div class="hero-content">
+                <h1 class="hero-title">terapi akupunktur</h1>
+                                  <p class="hero-text">
+                    seni pengobatan kuno yang merangsang titik-titik energi tubuh untuk meningkatkan sirkulasi, meredakan nyeri, dan memulihkan keseimbangan alami. Solusi aman dan alami untuk kesehatan holistik Anda.
+                </p>
+                <a href="info.html" class="hero-btn">klik untuk info & booking!</a>
+              </div>
+            </div>
+            <div
+              class="hero-slide"
+              style="
+                background: url('fashdus.jpg')
+                  center/cover no-repeat;
+              "
+            >
+              <div class="hero-content">
+                <h1 class="hero-title">terapi fashdu</h1>
+                                  <p class="hero-text">
+                    teknik pengeluaran darah kuno yang dirancang untuk membersihkan tubuh dari racun, melancarkan sirkulasi, dan mengembalikan keseimbangan energi. Sebagai bagian dari warisan thibbun nabawi.
+                </p>
+                <a href="info.html" class="hero-btn">klik untuk info & booking!</a>
+              </div>
+            </div>
+            <div class="hero-nav"></div>
+          </div>
+          </div>
+            <div class="quote-container">
+                <div class="steel-board">
+                    <!-- Ceiling mounts -->
+                    <div class="ceiling-mount ceiling-mount-left"></div>
+                    <div class="ceiling-mount ceiling-mount-right"></div>
+                    
+                    <!-- Chains -->
+                    <div class="chain chain-left" id="leftChain"></div>
+                    <div class="chain chain-right" id="rightChain"></div>
+                    
+                    <!-- Chain mounts on board -->
+                    <div class="chain-mount chain-mount-left"></div>
+                    <div class="chain-mount chain-mount-right"></div>
+                    
+                    <!-- Steel board faces -->
+                    <div class="steel-face">
+                        <div class="steel-texture"></div>
+                        <!-- Rivets -->
+                        <div class="rivet" style="top: 15px; left: 15px"></div>
+                        <div class="rivet" style="top: 15px; right: 15px"></div>
+                        <div class="rivet" style="bottom: 15px; left: 15px"></div>
+                        <div class="rivet" style="bottom: 15px; right: 15px"></div>
+                    </div>
+                    
+                    <!-- Steel edges -->
+                    <div class="steel-edge edge-top"></div>
+                    <div class="steel-edge edge-bottom"></div>
+                    <div class="steel-edge edge-left"></div>
+                    <div class="steel-edge edge-right"></div>
+                    
+                    <!-- Quote text -->
+                    <p class="quote-text">Rasulullah ﷺ bersabda:
+                        "Allah tidak menurunkan suatu penyakit kecuali Dia juga menurunkan obat untuknya."
+                        (HR. Bukhari, no. 5678).</p>
+                </div>
+            </div>
         
-        card.style.setProperty('--mouse-x', `${x}px`);
-        card.style.setProperty('--mouse-y', `${y}px`);
+            <section class="therapy-section">
+                <div class="containers">
+                    <div class="therapy-grid">
+                        <!-- Bekam Card -->
+                        <div class="therapy-card" onclick="toggleCard(this)">
+                            <div class="therapy-image">
+                                <img src="bekamku.webp" alt="Bekam Therapy">
+                                <div class="therapy-title">Bekam</div>
+                            </div>
+                            <div class="therapy-content">
+                                <div class="therapy-content-inner">
+                                    <p class="therapy-description">Metode detoksifikasi alami yang telah dipraktikkan selama berabad-abad, menggunakan teknik vakum modern untuk mengoptimalkan hasil terapi, bekam juga termasuk dalam Thibbun Nabawi</p>
+                                    <ul class="benefits">
+                                        <li>Sirkulasi darah optimal</li>
+                                        <li>Detoksifikasi menyeluruh</li>
+                                        <li>Peningkatan sistem imun</li>
+                                        <li>Relaksasi otot mendalam</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <!-- Fashdu Card -->
+                        <div class="therapy-card" onclick="toggleCard(this)">
+                            <div class="therapy-image">
+                                <img src="fashduku.webp" alt="Fashdu Modern">
+                                <div class="therapy-title">Fashdu</div>
+                            </div>
+                            <div class="therapy-content">
+                                <div class="therapy-content-inner">
+                                    <p class="therapy-description">Teknik pembersihan darah yang dimodernisasi dengan peralatan steril dan prosedur terstandar untuk keamanan maksimal.</p>
+                                    <ul class="benefits">
+                                        <li>Normalisasi tekanan darah</li>
+                                        <li>Pemurnian darah optimal</li>
+                                        <li>Perbaikan metabolisme</li>
+                                        <li>Peremajaan sel darah</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+        
+                              <!-- Fashdu Card -->
+                              <div class="therapy-card" onclick="toggleCard(this)">
+                                <div class="therapy-image">
+                                    <img src="terapi.jpg" alt="Fashdu Modern">
+                                    <div class="therapy-title">Pijat Refleksi</div>
+                                </div>
+                                <div class="therapy-content">
+                                    <div class="therapy-content-inner">
+                                        <p class="therapy-description">Teknik pembersihan darah yang dimodernisasi dengan peralatan steril dan prosedur terstandar untuk keamanan maksimal.</p>
+                                        <ul class="benefits">
+                                            <li>Normalisasi tekanan darah</li>
+                                            <li>Pemurnian darah optimal</li>
+                                            <li>Perbaikan metabolisme</li>
+                                            <li>Peremajaan sel darah</li>
+                                        </ul>
+                                        <div class="treatment-info">
+                                            <div class="treatment-time">⏱️ Durasi: 30-45 menit</div>
+                                            <div class="price-indicator">Rp. 200.000</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+        
+                              <!-- Fashdu Card -->
+                              <div class="therapy-card" onclick="toggleCard(this)">
+                                <div class="therapy-image">
+                                    <img src="tulang.jpg" alt="Fashdu Modern">
+                                    <div class="therapy-title">Pembetulan tulang</div>
+                                </div>
+                                <div class="therapy-content">
+                                    <div class="therapy-content-inner">
+                                        <p class="therapy-description">Terapi pembetulan tulang adalah metode perawatan untuk menyesuaikan posisi tulang dan sendi, terutama di tulang belakang, guna mengembalikan keseimbangan tubuh.</p>
+                                        <ul class="benefits">
+                                            <li>Meredakan nyeri (punggung, leher, sendi).</li>
+                                            <li>Memperbaiki postur tubuh.</li>
+                                            <li>Meningkatkan mobilitas dan fungsi saraf.</li>
+                                            <li>Mendukung kesehatan dan kesejahteraan.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+        
+                        <!-- Ruqyah Card -->
+                        <div class="therapy-card" onclick="toggleCard(this)">
+                            <div class="therapy-image">
+                                <img src="ruqyah.webp" alt="Ruqyah Syar'iyyah">
+                                <div class="therapy-title">Ruqyah Syar'iyyah</div>
+                            </div>
+                            <div class="therapy-content">
+                                <div class="therapy-content-inner">
+                                    <p class="therapy-description">Terapi spiritual yang menggabungkan ayat-ayat Al-Qur'an dengan teknik relaksasi modern untuk penyembuhan holistik.</p>
+                                    <ul class="benefits">
+                                        <li>Ketenangan jiwa mendalam</li>
+                                        <li>Penyembuhan spiritual</li>
+                                        <li>Harmoni mental-emosional</li>
+                                        <li>Penguatan iman</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <!-- Thibbun Nabawi Card -->
+                        <div class="therapy-card" onclick="toggleCard(this)">
+                            <div class="therapy-image">
+                                <img src="akupunktur.jpg" alt="Thibbun Nabawi Modern">
+                                <div class="therapy-title">Akupunktur</div>
+                            </div>
+                            <div class="therapy-content">
+                                <div class="therapy-content-inner">
+                                    <p class="therapy-description">Terapi tradisional yang menggunakan jarum tipis untuk merangsang titik-titik tertentu pada tubuh guna memulihkan keseimbangan energi dan kesehatan.</p>
+                                    <ul class="benefits">
+                                        <li>Meredakan nyeri (otot, sendi, migrain).</li>
+                                        <li>Mengurangi stres dan meningkatkan relaksasi.</li>
+                                        <li>Membantu masalah pencernaan dan tidur.</li>
+                                        <li>Mendukung pemulihan tubuh secara alami.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        
+            <div class="team-container-ant">
+                <!-- New Header Section -->
+                <div class="team-header-ant">
+                  <div class="team-header-decoration-ant left"></div>
+                  <div class="team-header-decoration-ant right"></div>
+                  <h1 class="team-header-title-ant">Tentang tim kami</h1>
+                  <p class="team-header-subtitle-ant">
+                    Memperkenalkan terapis yang bersertifikat, dan memiliki jam terbang tinggi.
+                  </p>
+                </div>
+              
+                <div class="team-grid-ant" id="teamGridAnt">
+                  <!-- Team members will be added here -->
+                </div>
+              
+                <div class="team-modal-ant" id="teamModalAnt">
+                  <div class="modal-content-ant">
+                    <button class="modal-close-ant" id="modalCloseAnt">×</button>
+                    <div class="modal-header-ant" id="modalHeaderAnt"></div>
+                    <div class="modal-body-ant" id="modalBodyAnt"></div>
+                  </div>
+                </div>
+              </div>
+            <div class="containerx">
+                <div class="section-title">
+                    <h1>Lokasi Griya Sehat Sumbersuci</h1>
+                </div>
+                
+                <div class="content">
+                    <div class="map-container" id="mapContainer">
+                        <iframe class="map-frame" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d760.2195349149476!2d112.55733992998724!3d-6.919819031134589!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e77e10f75bc1fc1%3A0xdc4298b1eeff36d!2sRumah%20Terapi%20Ma&#39;ul%20Hayat!5e1!3m2!1sid!2sid!4v1732393780471!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <button class="expand-btn" id="expandBtn" title="Toggle map size">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+                            </svg>
+                        </button>
+                    </div>
+        
+                    <div class="info-card">
+                        <div class="info-item">
+                            <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            <span class="info-text">Kacak Kidul, Tambak, Kec. Ujungpangkah, Kabupaten Gresik, Jawa Timur 61154</span>
+                        </div>
+        
+                        <div class="info-item">
+                            <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                            </svg>
+                            <span class="info-text">+62 813-5508-5757</span>
+                        </div>
+                        <div class="info-item">
+                            <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                            </svg>
+                            <span class="info-text">+62 821-3967-6807</span>
+                        </div>
+                        <div class="info-item">
+                            <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                            <span class="info-text">Jam kerja: Fleksibel</span>
+                        </div>
+        
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=123+Business+Street+City+Country" 
+                           target="_blank" 
+                           class="directions-btn">
+                           Dapatkan petunjuk arah
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 8px;">
+                                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                                <path d="M15 3h6v6"/>
+                                <path d="M10 14L21 3"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        
+        <div class="p-4">
+        </div>
+    </div>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+            <!-- Company Info -->
+            <div class="mb-4 md:mb-0 text-center md:text-left">
+                <h2 class="text-2xl font-bold">Griya Sehat Sumbersuci</h2>
+                <p class="text-gray-400">Tempat terapi pilihan keluarga</p>
+            </div>
+            <!-- Social Media Links -->
+            <div class="flex space-x-6">
+                <a href="#" class="social-icon instagram text-3xl text-white hover:text-gray-300">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-icon youtube text-3xl text-white hover:text-gray-300">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="#" class="social-icon facebook text-3xl text-white hover:text-gray-300">
+                    <i class="fab fa-facebook"></i>
+                </a>
+            </div>
+            <!-- Contact & Legal -->
+            <div class="mt-4 md:mt-0 text-center md:text-right">
+                <div class="text-gray-400 mt-2">
+                    <a href="#" class="hover:underline mr-4">Privacy Policy</a>
+                    <a href="#" class="hover:underline">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright -->
+        <div class="text-center text-gray-500 mt-6 border-t border-gray-700 pt-4">
+            © 2024 Developed by ALFANGKY.
+        </div>
+    </footer>
+    <!-- Enhanced WhatsApp Float Button -->
+    <div class="whatsapp-container">
+        <a href="https://wa.me/6281355085757?text=Assalamualaikum%20Saya%20dari%20website%20griya%20sehat%20mau%20mencoba%20terapi%20apakah%20bisa?" class="whatsapp-float" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+            <div class="status-dot"></div>
+            <span class="tooltip">Need help? Chat with us! 👋</span>
+        </a>
+        <div class="whatsapp-label">Chat dengan kami!</div>
+    </div>
+    <script>
+   // Enhanced Navigation Functionality
+   document.addEventListener('DOMContentLoaded', function() {
+                                const navbar = document.querySelector('.navbar');
+                                const toggle = document.querySelector('.nav-toggle');
+                                const nav = document.querySelector('.nav-links');
+                                const iconBtns = document.querySelectorAll('.icon-btn');
+                                let isMenuOpen = false;
+                    
+                                // Scroll Handler with throttling
+                                let lastScrollPosition = 0;
+                                let ticking = false;
+                    
+                                function handleScroll() {
+                                    if (!ticking) {
+                                        window.requestAnimationFrame(() => {
+                                            const currentScroll = window.pageYOffset;
+                                            navbar.classList.toggle('scrolled', currentScroll > 50);
+                                            lastScrollPosition = currentScroll;
+                                            ticking = false;
+                                        });
+                                        ticking = true;
+                                    }
+                                }
+                    
+                                window.addEventListener('scroll', handleScroll, { passive: true });
+                    
+                                // Mobile Menu Toggle
+                                toggle.addEventListener('click', (e) => {
+                                    e.stopPropagation();
+                                    isMenuOpen = !isMenuOpen;
+                                    toggle.classList.toggle('active');
+                                    nav.classList.toggle('active');
+                                    
+                                    // Prevent body scroll when menu is open
+                                    document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+                                });
+                    
+                                // Dropdown Management
+                                iconBtns.forEach(btn => {
+                                    btn.addEventListener('click', (e) => {
+                                        e.stopPropagation();
+                                        
+                                        // Close other dropdowns
+                                        iconBtns.forEach(otherBtn => {
+                                            if (otherBtn !== btn && otherBtn.classList.contains('active')) {
+                                                otherBtn.classList.remove('active');
+                                            }
+                                        });
+                    
+                                        // Toggle current dropdown with animation
+                                        btn.classList.toggle('active');
+                                    });
+                    
+                                    // Handle dropdown items
+                                    const dropdownItems = btn.querySelectorAll('.dropdown-item');
+                                    dropdownItems.forEach(item => {
+                                        item.addEventListener('click', (e) => {
+                                            e.stopPropagation();
+                                            // Add animation before closing
+                                            setTimeout(() => {
+                                                btn.classList.remove('active');
+                                            }, 100);
+                                        });
+                                    });
+                                });
+                    
+                                // Close dropdowns when clicking outside
+                                document.addEventListener('click', () => {
+                                    iconBtns.forEach(btn => btn.classList.remove('active'));
+                                });
+                    
+                                // Handle mobile menu links
+                                const navLinks = document.querySelectorAll('.nav-link');
+                                navLinks.forEach(link => {
+                                    link.addEventListener('click', () => {
+                                        if (window.innerWidth <= 768) {
+                                            isMenuOpen = false;
+                                            toggle.classList.remove('active');
+                                            nav.classList.remove('active');
+                                            document.body.style.overflow = '';
+                                        }
+                                    });
+                                });
+                    
+                                // Close mobile menu on resize if open
+                                let resizeTimer;
+                                window.addEventListener('resize', () => {
+                                    clearTimeout(resizeTimer);
+                                    resizeTimer = setTimeout(() => {
+                                        if (window.innerWidth > 768 && isMenuOpen) {
+                                            isMenuOpen = false;
+                                            toggle.classList.remove('active');
+                                            nav.classList.remove('active');
+                                            document.body.style.overflow = '';
+                                        }
+                                    }, 250);
+                                });
+                    
+                                // Add hover effect for interactive elements
+                                const interactiveElements = document.querySelectorAll('.nav-link, .dropdown-item, .icon-btn');
+                                interactiveElements.forEach(element => {
+                                    element.addEventListener('mouseenter', () => {
+                                        element.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+                                    });
+                                });
+                    
+                                // Initialize navbar state
+                                handleScroll();
+                            });
+      document.addEventListener("DOMContentLoaded", () => {
+        const slides = document.querySelectorAll(".hero-slide");
+        const nav = document.querySelector(".hero-nav");
+        let currentSlide = 0;
+        let isAnimating = false;
+        let slideInterval;
+
+        // Create navigation dots
+        slides.forEach((_, index) => {
+          const dot = document.createElement("div");
+          dot.classList.add("hero-dot");
+          if (index === 0) dot.classList.add("active");
+          dot.addEventListener("click", () => goToSlide(index));
+          nav.appendChild(dot);
+        });
+
+        function updateSlides(nextIndex) {
+          if (isAnimating || nextIndex === currentSlide) return;
+          isAnimating = true;
+
+          // Remove active classes
+          slides[currentSlide].classList.remove("active");
+          nav.children[currentSlide].classList.remove("active");
+
+          // Add active classes to next slide
+          slides[nextIndex].classList.add("active");
+          nav.children[nextIndex].classList.add("active");
+
+          currentSlide = nextIndex;
+
+          // Reset animation lock after transition
+          setTimeout(() => {
+            isAnimating = false;
+          }, 1200);
+        }
+
+        function nextSlide() {
+          const nextIndex = (currentSlide + 1) % slides.length;
+          updateSlides(nextIndex);
+        }
+
+        function goToSlide(index) {
+          if (index >= 0 && index < slides.length) {
+            updateSlides(index);
+            resetInterval();
+          }
+        }
+
+        function resetInterval() {
+          clearInterval(slideInterval);
+          slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        // Initialize auto-sliding
+        resetInterval();
+
+        // Touch support
+        let touchStart = null;
+        const hero = document.querySelector(".hero-wrapper");
+
+        hero.addEventListener(
+          "touchstart",
+          (e) => {
+            touchStart = e.touches[0].clientX;
+          },
+          { passive: true }
+        );
+
+        hero.addEventListener(
+          "touchend",
+          (e) => {
+            if (!touchStart) return;
+
+            const touchEnd = e.changedTouches[0].clientX;
+            const diff = touchStart - touchEnd;
+
+            if (Math.abs(diff) > 50) {
+              const nextIndex =
+                diff > 0
+                  ? (currentSlide + 1) % slides.length
+                  : (currentSlide - 1 + slides.length) % slides.length;
+              goToSlide(nextIndex);
+            }
+
+            touchStart = null;
+          },
+          { passive: true }
+        );
+
+        // Pause on hover
+        hero.addEventListener("mouseenter", () => clearInterval(slideInterval));
+        hero.addEventListener("mouseleave", resetInterval);
+
+        // Keyboard navigation
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowLeft") {
+            goToSlide((currentSlide - 1 + slides.length) % slides.length);
+          } else if (e.key === "ArrowRight") {
+            goToSlide((currentSlide + 1) % slides.length);
+          }
+        });
       });
-    });
-    document.getElementById('date').min = new Date().toISOString().split('T')[0];
+      // Initialize GSAP animations
+      document.addEventListener("DOMContentLoaded", () => {
+        // Animate header
+        gsap.to(".header", {
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
+        });
 
-    // Modal functions
-    function openModal() {
-      document.getElementById('bookingModal').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    }
+        // Animate categories
+        gsap.to(".categories", {
+          opacity: 1,
+          duration: 1,
+          delay: 0.3,
+          ease: "power3.out",
+        });
 
-    function closeModal() {
-      document.getElementById('bookingModal').style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
+        // Animate drone cards
+        gsap.to(".drone-card", {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: "power3.out",
+          delay: 0.5,
+        });
 
-    // Close modal when clicking outside
-    window.onclick = function(event) {
-      const modal = document.getElementById('bookingModal');
-      if (event.target === modal) {
-        closeModal();
+        // Category filter functionality
+        const categoryButtons = document.querySelectorAll(".category-btn");
+        const droneCards = document.querySelectorAll(".drone-card");
+
+        categoryButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            // Update active button state
+            categoryButtons.forEach((btn) => btn.classList.remove("active"));
+            button.classList.add("active");
+
+            // Get selected category
+            const category = button.textContent.toLowerCase();
+
+            // Animate cards based on category
+            droneCards.forEach((card) => {
+              const cardCategory = card
+                .querySelector(".drone-category")
+                .textContent.toLowerCase();
+
+              // If 'All Drones' is selected or categories match
+              if (
+                category === "all drones" ||
+                cardCategory.includes(category)
+              ) {
+                // Show card with animation
+                gsap.to(card, {
+                  opacity: 1,
+                  scale: 1,
+                  duration: 0.5,
+                  ease: "power2.out",
+                  display: "block",
+                });
+              } else {
+                // Hide card with animation
+                gsap.to(card, {
+                  opacity: 0,
+                  scale: 0.95,
+                  duration: 0.5,
+                  ease: "power2.out",
+                  display: "none",
+                });
+              }
+            });
+          });
+        });
+
+        // Booking button interactions
+        const bookButtons = document.querySelectorAll(".book-btn");
+        bookButtons.forEach((button) => {
+          if (!button.disabled) {
+            button.addEventListener("click", () => {
+              // Animation for button click
+              gsap.to(button, {
+                scale: 0.95,
+                duration: 0.1,
+                yoyo: true,
+                repeat: 1,
+                ease: "power2.out",
+              });
+
+              // Here you would typically handle the booking logic
+              const droneTitle = button
+                .closest(".drone-card")
+                .querySelector(".drone-title").textContent;
+              console.log(`Booking initiated for: ${droneTitle}`);
+            });
+
+            // Hover animations
+            button.addEventListener("mouseenter", () => {
+              gsap.to(button, {
+                scale: 1.05,
+                duration: 0.3,
+                ease: "power2.out",
+              });
+            });
+
+            button.addEventListener("mouseleave", () => {
+              gsap.to(button, {
+                scale: 1,
+                duration: 0.3,
+                ease: "power2.out",
+              });
+            });
+          }
+        });
+
+        // Card hover animations
+        droneCards.forEach((card) => {
+          card.addEventListener("mouseenter", () => {
+            const image = card.querySelector("img");
+            gsap.to(image, {
+              scale: 1.05,
+              duration: 0.3,
+              ease: "power2.out",
+            });
+          });
+
+          card.addEventListener("mouseleave", () => {
+            const image = card.querySelector("img");
+            gsap.to(image, {
+              scale: 1,
+              duration: 0.3,
+              ease: "power2.out",
+            });
+          });
+        });
+
+        // Smooth scroll for mobile devices
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute("href")).scrollIntoView({
+              behavior: "smooth",
+            });
+          });
+        });
+
+        // Add intersection observer for scroll animations
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.style.opacity = 1;
+                entry.target.style.transform = "translateY(0)";
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+          }
+        );
+
+        // Observe all drone cards for scroll animations
+        droneCards.forEach((card) => observer.observe(card));
+      });
+      document.addEventListener('DOMContentLoaded', () => {
+            const mapContainer = document.getElementById('mapContainer');
+            const expandBtn = document.getElementById('expandBtn');
+            let isExpanded = false;
+
+            expandBtn.addEventListener('click', () => {
+                isExpanded = !isExpanded;
+                mapContainer.style.transition = 'all 0.3s ease';
+                
+                if (isExpanded) {
+                    mapContainer.classList.add('expanded');
+                    expandBtn.querySelector('svg').style.transform = 'rotate(180deg)';
+                } else {
+                    mapContainer.classList.remove('expanded');
+                    expandBtn.querySelector('svg').style.transform = 'rotate(0deg)';
+                }
+            });
+
+            // Add hover animation to info items
+            const infoItems = document.querySelectorAll('.info-item');
+            infoItems.forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    item.style.transform = 'translateX(10px)';
+                    item.querySelector('.info-icon').classList.add('pulse');
+                });
+
+                item.addEventListener('mouseleave', () => {
+                    item.style.transform = 'translateX(0)';
+                    item.querySelector('.info-icon').classList.remove('pulse');
+                });
+            });
+        });
+
+    document.addEventListener('DOMContentLoaded', () => {
+            const mapContainer = document.getElementById('mapContainer');
+            const expandBtn = document.getElementById('expandBtn');
+            let isExpanded = false;
+
+            expandBtn.addEventListener('click', () => {
+                isExpanded = !isExpanded;
+                mapContainer.style.transition = 'all 0.3s ease';
+                
+                if (isExpanded) {
+                    mapContainer.classList.add('expanded');
+                    expandBtn.querySelector('svg').style.transform = 'rotate(180deg)';
+                } else {
+                    mapContainer.classList.remove('expanded');
+                    expandBtn.querySelector('svg').style.transform = 'rotate(0deg)';
+                }
+            });
+
+            // Add hover animation to info items
+            const infoItems = document.querySelectorAll('.info-item');
+            infoItems.forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    item.style.transform = 'translateX(10px)';
+                    item.querySelector('.info-icon').classList.add('pulse');
+                });
+
+                item.addEventListener('mouseleave', () => {
+                    item.style.transform = 'translateX(0)';
+                    item.querySelector('.info-icon').classList.remove('pulse');
+                });
+            });
+        });
+        (function() {
+  const TeamMembersAnt = {
+    members: [
+      {
+        id: 1,
+        name: "Zainul Wahid, A.Ma",
+        position: "Founder & Terapis",
+        image: "about1.png",
+        description: "Pemilik sekaligus terapis khusus pria.",
+        fullBio: ".",
+        verified: true
+      },
+      {
+        id: 2,
+        name: "Ni'matur Rohmah, S.Pd ",
+        position: "Founder & Terapis",
+        image: "ninik.jpg",
+        description: "Pemilik sekaligus terapis khusus wanita.",
+        fullBio: ".",
+        verified: true
+      },
+      {
+        id: 3,
+        name: "AL FANGKY",
+        position: "Web Developer",
+        image: "kiki.jpg",
+        description: "Mahasiswa Sistem Informasi.",
+        fullBio: ".",
+        verified: false
       }
-    }
+    ],
 
-    // Form submission handler
-    function submitForm(event) {
-      event.preventDefault();
-      
-      const name = document.getElementById('name').value;
-      const service = document.getElementById('service').value;
-      const date = document.getElementById('date').value;
-      const time = document.getElementById('time').value;
-      const notes = document.getElementById('notes').value || 'Tidak ada catatan tambahan';
+    init: function() {
+      this.gridContainer = document.getElementById('teamGridAnt');
+      this.modal = document.getElementById('teamModalAnt');
+      this.modalHeader = document.getElementById('modalHeaderAnt');
+      this.modalBody = document.getElementById('modalBodyAnt');
+      this.modalClose = document.getElementById('modalCloseAnt');
 
-      const formattedDate = new Date(date).toLocaleDateString('id-ID', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
+      this.renderMembers();
+      this.bindEvents();
+    },
+
+    renderMembers: function() {
+      this.members.forEach(member => {
+        const memberElement = document.createElement('div');
+        memberElement.className = 'team-member-ant';
+        memberElement.innerHTML = `
+          <img src="${member.image}" alt="${member.name}" class="member-image-ant">
+          <h2 class="member-name-ant">
+            ${member.name}
+            ${member.verified ? '<span class="verified-badge-ant"></span>' : ''}
+          </h2>
+          <h3 class="member-position-ant">${member.position}</h3>
+          <p class="member-description-ant">${member.description}</p>
+          <button class="read-more-btn-ant" data-member-id="${member.id}">Info lengkap</button>
+        `;
+        this.gridContainer.appendChild(memberElement);
+      });
+    },
+
+    bindEvents: function() {
+      this.gridContainer.addEventListener('click', (e) => {
+        if (e.target.classList.contains('read-more-btn-ant')) {
+          const memberId = parseInt(e.target.dataset.memberId);
+          const member = this.members.find(m => m.id === memberId);
+          if (member) this.showModal(member);
+          e.stopPropagation();
+        }
       });
 
-      const message = `Halo, saya ingin membuat janji terapi.%0A%0A*Detail Reservasi:*%0A━━━━━━━━━━━━━━━%0A▪️ *Nama:* ${name}%0A▪️ *Jenis Terapi:* ${service}%0A▪️ *Tanggal:* ${formattedDate}%0A▪️ *Waktu:* ${time} WIB%0A▪️ *Catatan:* ${notes}`;
+      this.modalClose.addEventListener('click', (e) => {
+        this.hideModal();
+        e.stopPropagation();
+      });
 
-      const phoneNumber = '6282333444347';
-      const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
+      this.modal.addEventListener('click', (e) => {
+        if (e.target === this.modal) {
+          this.hideModal();
+        }
+      });
+    },
 
-      window.open(whatsappURL, '_blank');
-      closeModal();
+    showModal: function(member) {
+      this.modalHeader.innerHTML = `
+        <h2 class="member-name-ant">
+          ${member.name}
+          ${member.verified ? '<span class="verified-badge-ant"></span>' : ''}
+        </h2>
+        <h3 class="member-position-ant">${member.position}</h3>
+      `;
+      this.modalBody.innerHTML = `
+        <p>${member.fullBio}</p>
+      `;
+      this.modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    },
+
+    hideModal: function() {
+      this.modal.style.display = 'none';
+      document.body.style.overflow = '';
     }
-  </script>
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => TeamMembersAnt.init());
+  } else {
+    TeamMembersAnt.init();
+  }
+})();
+document.addEventListener('DOMContentLoaded', function() {
+            const whatsappFloat = document.querySelector('.whatsapp-float');
+            const container = document.querySelector('.whatsapp-container');
+            
+            // Add entrance animation
+            container.style.opacity = '0';
+            container.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                container.style.transition = 'all 0.5s ease';
+                container.style.opacity = '1';
+                container.style.transform = 'translateY(0)';
+            }, 500);
+
+            // Add click tracking (optional)
+            whatsappFloat.addEventListener('click', function() {
+                console.log('WhatsApp button clicked');
+                // You can add analytics tracking here
+            });
+
+            // Optional: Show different messages based on time
+            function updateTooltip() {
+                const hour = new Date().getHours();
+                const tooltip = document.querySelector('.tooltip');
+                
+                if (hour < 12) {
+                    tooltip.textContent = "Selamat pagi! Ada yang bisa dibantu? 👋";
+                } else if (hour < 17) {
+                    tooltip.textContent = "Selamat siang! Ada yang bisa dibantu? 👋";
+                } else {
+                    tooltip.textContent = "Selamat malam! Ada yang bisa dibantu? 👋";
+                }
+            }
+            
+            updateTooltip();
+            setInterval(updateTooltip, 60000); // Update every minute
+        });
+                // Create chain links dynamically
+                function createChainLinks() {
+            const chains = document.querySelectorAll('.chain');
+            const numberOfLinks = 6;
+
+            chains.forEach(chain => {
+                for(let i = 0; i < numberOfLinks; i++) {
+                    const link = document.createElement('div');
+                    link.className = 'chain-link';
+                    chain.appendChild(link);
+                }
+            });
+        }
+
+        // Initialize
+        window.onload = function() {
+            createChainLinks();
+        };
+        function toggleCard(card) {
+            const wasActive = card.classList.contains('active');
+            
+            // Close all cards
+            document.querySelectorAll('.therapy-card').forEach(c => {
+                c.classList.remove('active');
+                const content = c.querySelector('.therapy-content');
+                const inner = c.querySelector('.therapy-content-inner');
+                inner.style.opacity = '0';
+                inner.style.transform = 'translateY(20px)';
+                content.style.maxHeight = null;
+            });
+            
+            // Open clicked card if it wasn't active
+            if (!wasActive) {
+                card.classList.add('active');
+                const content = card.querySelector('.therapy-content');
+                const inner = card.querySelector('.therapy-content-inner');
+                content.style.maxHeight = content.scrollHeight + 'px';
+                setTimeout(() => {
+                    inner.style.opacity = '1';
+                    inner.style.transform = 'translateY(0)';
+                }, 100);
+            }
+        }
+
+        // Smooth scroll animation
+        const cards = document.querySelectorAll('.therapy-card');
+        
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            },
+            {
+                threshold: 0.1,
+                rootMargin: '0px'
+            }
+        );
+
+        // Apply observer to each card with staggered delay
+        cards.forEach((card, index) => {
+            card.style.transitionDelay = `${index * 100}ms`;
+            observer.observe(card);
+        });
+
+        // Initialize animations on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                cards.forEach(card => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                });
+            }, 100);
+        });
+    </script>
 </body>
 </html>
